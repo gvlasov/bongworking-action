@@ -1,0 +1,23 @@
+name: Development workflow to run the action locally with nektos/act
+on: [push]
+
+jobs:
+  run_psi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out this repo
+        uses: actions/checkout@v2
+      - name: Install npm dependencies
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+      - run: npm install
+      - name: Run bong action
+        uses: "./"
+        id: bong
+        with:
+          bong_filepath: bong.json
+      - run: echo "${{ steps.bong.outputs.report }}"
+      - run: echo "::set-output name=report::${{ steps.bong.outputs.report }}"
+
+

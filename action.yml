@@ -1,0 +1,18 @@
+name: Bongworking check
+description: Makes sure the bong is working
+branding:
+  icon: cloud
+  color: green
+inputs:
+  bong_filepath:
+    description: |
+      JSON list of paths from the site of this project to run the checks against, without base URL
+      For example,
+      ["/contacts", "/login", "/products/123-mega-pack"]
+    required: true
+outputs:
+  report:
+    description: Query report
+runs:
+  using: node12
+  main: index.js
